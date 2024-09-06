@@ -25,8 +25,7 @@ namespace Data.Implements
             {
                 throw new Exception("Registro no encontrado");
             }
-            entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
-            context.Views.Update(entity);
+            context.Views.Remove(entity);
             await context.SaveChangesAsync();
         }
         public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
@@ -43,7 +42,7 @@ namespace Data.Implements
         }
         public async Task<View> GetById(int id)
         {
-            var sql = @"SELECT * FROM View WHERE Id = @Id ORDER BY Id ASC";
+            var sql = @"SELECT * FROM views WHERE Id = @Id ORDER BY Id ASC";
             return await this.context.QueryFirstOrDefaultAsync<View>(sql, new { Id = id });
         }
         public async Task<View> Save(View entity)
@@ -63,7 +62,7 @@ namespace Data.Implements
         }
         public async Task<IEnumerable<View>> GetAll()
         {
-            var sql = @"SELECT * FROM View ORDER BY Id ASC";
+            var sql = @"SELECT * FROM views ORDER BY Id ASC";
             return await this.context.QueryAsync<View>(sql);
         }
 

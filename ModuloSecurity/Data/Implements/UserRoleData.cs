@@ -25,8 +25,7 @@ namespace Data.Implements
             {
                 throw new Exception("Registro no encontrado");
             }
-            entity.DeleteAt = DateTime.Parse(DateTime.Today.ToString());
-            context.UserRoles.Update(entity);
+            context.UserRoles.Remove(entity);
             await context.SaveChangesAsync();
         }
         public async Task<IEnumerable<DataSelectDto>> GetAllSelect()
@@ -43,7 +42,7 @@ namespace Data.Implements
         }
         public async Task<UserRole> GetById(int id)
         {
-            var sql = @"SELECT * FROM UserRole WHERE Id = @Id ORDER BY Id ASC";
+            var sql = @"SELECT * FROM userRoles WHERE Id = @Id ORDER BY Id ASC";
             return await this.context.QueryFirstOrDefaultAsync<UserRole>(sql, new { Id = id });
         }
         public async Task<UserRole> Save(UserRole entity)
@@ -63,7 +62,7 @@ namespace Data.Implements
         }
         public async Task<IEnumerable<UserRole>> GetAll()
         {
-            var sql = @"SELECT * FROM UserRole ORDER BY Id ASC";
+            var sql = @"SELECT * FROM userRoles ORDER BY Id ASC";
             return await this.context.QueryAsync<UserRole>(sql);
         }
 
