@@ -62,7 +62,7 @@ namespace Data.Implements
         }
         public async Task<IEnumerable<User>> GetAll()
         {
-            var sql = @"SELECT * FROM users ORDER BY Id ASC";
+            var sql = @"SELECT * FROM users ORDER BY Id ASC"; 
             return await this.context.QueryAsync<User>(sql);
         }
 

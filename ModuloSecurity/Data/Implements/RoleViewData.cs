@@ -42,11 +42,11 @@ namespace Data.Implements
         }
         public async Task<RoleView> GetById(int id)
         {
-            var sql = @"SELECT * FROM roleViews WHERE Id = @Id ORDER BY Id ASC";
+            var sql = @"SELECT * FROM roleviews WHERE Id = @Id ORDER BY Id ASC";
             return await this.context.QueryFirstOrDefaultAsync<RoleView>(sql, new { Id = id });
         }
         public async Task<RoleView> Save(RoleView entity)
-        {
+        { 
             context.RoleViews.Add(entity);
             await context.SaveChangesAsync();
             return entity;
@@ -62,7 +62,7 @@ namespace Data.Implements
         }
         public async Task<IEnumerable<RoleView>> GetAll()
         {
-            var sql = @"SELECT * FROM roleViews ORDER BY Id ASC";
+            var sql = @"SELECT * FROM roleviews ORDER BY Id ASC";
             return await this.context.QueryAsync<RoleView>(sql);
         }
 
